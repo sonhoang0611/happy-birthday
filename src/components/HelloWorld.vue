@@ -1,16 +1,20 @@
 <template>
 <div class="main-app">
   <div class="carousell">
-    <div id="prevImg" @click.prevent="prevImage"><</div>
+    <div id="prevImg" @click.prevent="prevImage">
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    </div>
     <div class="container">
       <div class="image-box">
         <img id="image" :src="firstImg.src" class="img-fluid">
       </div>
       <div id="speech" class="speech">
-        <span>{{firstImg.text}}</span>
+        <span v-for="text in firstImg.text">{{text}}</span>
       </div>
     </div>
-    <div id="nextImg" @click.prevent="nextImage">></div>
+    <div id="nextImg" @click.prevent="nextImage">
+      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    </div>
   </div>
 </div>
 </template>
@@ -22,25 +26,37 @@ export default {
     return {
       firstImg: {
           src: require('../assets/hpbd.gif'),
-          text: 'Sinh nhật vui vẻ nghen!!!'
+          text: ['Sinh nhật vui vẻ nhen người!!!', '(bấm mũi tên để xem hình khác nha)']
         },
       listImgs: [
         {
           src: require('../assets/hpbd.gif'),
-          text: 'Sinh nhật vui vẻ nghen!!!'
+          text: ['Sinh nhật vui vẻ nhen người!!!', '(bấm mũi tên để xem hình khác nha)']
         },
         {
           src: require('../assets/hpbd2.gif'),
-          text: 'Sinh nhật vui vẻ nghen 2!!!'
+          text: ['*Thổi kèn* Toe toe toe']
         },
         {
           src: require('../assets/db_pig_nose.png'),
-          text: 'Sinh nhật vui vẻ nghen 3!!!'
+          text: ['Thấy hình trên giống mi hong???', 'Heooooo']
+        },
+        {
+          src: require('../assets/hpbd5.gif'),
+          text: ['Nhớ ăn uống đầy đủ để còn uống thuốc với có sức làm nha']
         },
         {
           src: require('../assets/ravee.gif'),
-          text: 'Sinh nhật vui vẻ nghen 4!!!'
-        }
+          text: ['Giữ gìn sức khoẻ cho tốt nhe sắp thi rồi đó.', 'Chúc mi đạt được những gì mình mong muốn.']
+        },
+        {
+          src: require('../assets/duyen.jpg'),
+          text: ['Thích tấm hình này của mi nhất.','Lúc nào cũng vui cười như vầy nhé!']
+        },
+        {
+          src: require('../assets/heo.png'),
+          text: ['I know this can\'t help or fix what you are going through.', 'These\'re just words on paper.', 'But maybe it will remind you that I am still here...', 'and so are you.']
+        },
       ]
     }
   },
@@ -84,6 +100,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Itim', cursive;
+
+  @media (max-width: 600px) {
+    padding: 25px 0;
+  }
+
 
   .carousell {
     height: 100%;
@@ -101,26 +123,26 @@ export default {
     }
 
     .image-box {
-      max-width: 800px;
-      img {
-        border: 1px solid #ede;
-        border-radius: 6px;
-      }
+      max-width: 740px;
     }
+
     .speech {
       display: flex;
-      flex: 1;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-family: 'Itim', cursive;
+      flex: 1;
+      border: 1px solid #ede;
+      border-radius: 6px;
+      min-height: 90px;
 
       span {
-        font-size: 2em;
-        font-weight: 600;
+        font-size: 1.55em;
       }
     }
 
     #prevImg, #nextImg {
+      margin: 0 20px;
       height: 100%;
       display: flex;
       justify-content: center;
@@ -129,6 +151,24 @@ export default {
       flex: 1;
       min-width: 40px;
       max-width: 80px;
+
+      i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        background: #f4ba05;
+        border-radius: 20px;
+        height: 40px;
+        width: 40px;
+        transition: all .15s ease-in;
+      }
+
+      &:hover {
+        i {
+          transform: scale(1.3, 1.3);
+        }
+      }
     }
   }
 }
